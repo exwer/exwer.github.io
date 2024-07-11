@@ -1,10 +1,9 @@
 ---
-date: 2024-07-01
-title: "从零实现vue3   runtime core之初始化"
 date: 2021-07-01T11:00:00.000Z
-updated: 2024-07-01T20:28:59.000Z
+title: 从零实现vue3   runtime core之初始化
+updated: 2024-07-11 03:08:36
 categories:
-  - 技术 
+  - 技术
 tags:
   - 前端
   - vue
