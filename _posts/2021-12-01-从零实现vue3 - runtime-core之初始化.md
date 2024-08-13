@@ -15,7 +15,6 @@ tags:
 
 本文知识来自: [vuejs/core](https://github.com/vuejs/core)、[mini-vue](https://github.com/cuixiaorui/mini-vuehttps://github.com/cuixiaorui/mini-vue)
 
-本文代码仓库：[view](https://github.com/exwer/view)
 
 欢迎大家前去star！
 
