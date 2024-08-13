@@ -569,7 +569,7 @@ function setupRenderEffect(instance, vnode, container){
 
 你可能会注意到，像`props`、`emit`等等很多功能还没有实现，其实，我们的架子已经搭好，再加功能也就是水到渠成的事情，基本没有什么难点了。
 
-当然，本项目已经实现了component大部分功能，但如果在一篇文章全部讲清楚是不可能的，所以欢迎有兴趣的可以直接看[我的代码]("https://github.com/exwer/view")。（这里面我觉得实现起来比较复杂的主要是provide/inject，如果不懂欢迎提出疑问）
+当然，本项目已经实现了component大部分功能，但如果在一篇文章全部讲清楚是不可能的，所以欢迎有兴趣的可以直接看[我的代码](https://github.com/exwer/view)。（这里面我觉得实现起来比较复杂的主要是provide/inject，如果不懂欢迎提出疑问）
 
 ### 初始化element节点
 
