@@ -6,7 +6,7 @@ last_modified_at: 2024-07-01T20:28:59.000Z
 categories:
   - 技术
 tags: 
-updated: 2024-11-14 23:45:39
+updated: 2024-11-15 02:29:36
 ---
 
 # reactivity
@@ -23,8 +23,8 @@ export function trackEffects(dep: Set<ReactiveEffect>) {
 反向收集的主要目的是为了清理效果。当我们需要停止一个 effect 时（比如组件卸载），我们需要：
 - 找到这个 effect 被哪些数据收集了
 - 从这些数据的依赖集合中删除这个 effect
-没有反向收集的话，我们就需要遍历整个 targetMap 来找到所有包含这个 effect 的依赖集合，这样的性能开销会很大。
-看看 cleanupEffect 函数就明白了：
+没有反向收集的话，我们就需要遍历整个 `targetMap` 来找到所有包含这个 effect 的依赖集合，这样的性能开销会很大。
+看看 `cleanupEffect` 函数就明白了：
 ```javascript
 function cleanupEffect(effect: ReactiveEffect) {
   effect.deps.forEach((dep) => {
@@ -34,17 +34,35 @@ function cleanupEffect(effect: ReactiveEffect) {
 }
 ```
 
-## parent机制解决effect嵌套
-例子：
+## parent机制解决嵌套effect和无限循环问题
+嵌套effect例子：
+```javascript
+    effect(() => {
+      console.log('level 1')
+      effect(() => {
+        console.log('level 2')
+        effect(() => {
+          console.log('level 3', data.a)
+        })
+        console.log(data.b)
+      })
+    })
+```
+我们知道，在`track`中，响应式变量会收集`activeEffect`作为依赖，同时`activeEffect`会反向收集所有包含它的集合，以便以后的清理操作。但是在这个例子中，由于执行顺序是`level 1 -> level 2 -> level 3 -> data.b`，导致最后一次访问`data.b`时`activeEffect`实际变成了最内部的`effect`，这样就造成了`track`的乱序。
+`parent`是一种类似链表的机制，来实现环境的恢复，保证`activeEffect`是准确的。
+我们要保证在effect.fn()之前，它取到的activeEffect是它自己，在fn()之后，它应该把activeEffect还给他的parent。
+```javascript
+run(){
+	
+}
+```
+
+无限循环例子：
 ```javascript
 const counter = reactive({ num: 0, num2: 0 })
 
-effect(() => {              // effect1
-  console.log('outer')
-  effect(() => {           // effect2
-    console.log('inner', counter.num)
-  })
-  counter.num2++
+effect(() => {              
+  counter.num2 = counter.num2 + 1 //counter.num2++
 })
 ```
 
