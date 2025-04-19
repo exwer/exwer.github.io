@@ -6,7 +6,7 @@ last_modified_at: 2024-07-01T20:28:59.000Z
 categories:
   - 技术
 tags: 
-updated: 2024-11-16 04:17:08
+updated: 2025-04-16 01:16:36
 ---
 
 # reactivity
@@ -150,3 +150,12 @@ export function createComponentInstance(vNode){
 	return component
 }
 ```
+
+# renderer
+
+## 双端对比算法
+
+# 调试
+
+- 测试组件更新功能时，组件内声明一个`isChange`响应式变量，同时`window.isChange = isChange`，这样方便在浏览器控制台触发k：`isChange.value = true`
+
