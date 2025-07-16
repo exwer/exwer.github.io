@@ -1,16 +1,17 @@
 ---
-date: 2024-07-01
-
-date: 2024-07-01
-
-layout: post
-title: "git"
 date: 2021-07-01T11:00:00.000Z
+layout: post
+title: git
 last_modified_at: 2024-07-01T20:28:59.000Z
 categories:
-  - 技术 
-tags:
+  - 技术
+tags: 
+updated: 2024-08-23 04:57:25
 ---
+### 撤回commit
+```shell
+git reset --soft HEAD^
+```
 
 ### 时光机
 ```shell
